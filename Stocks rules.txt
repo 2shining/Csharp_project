@@ -1,0 +1,84 @@
+ITO ALOHA NY AN'LE MAXIMUM ....LE MAMPIDITRA ANATY STOCKS ENTRE ZANY
+reto code reto zany ampidirina eo amle refa miajouter amle entre stocks sy sortie stocks
+mbola tokn hisy code manao insert anaty table stocks_entre sy stocks_sortie zany fa reto nataoko reto le refa 
+mampiditra eo de miova le niveau any am stocks
+
+
+try
+{
+   /* eto le regle am maximum no nataoko */
+   conn.Open();
+   //Finding varibales that may be used in our update
+   string select = "SELECT Niveau FROM stocks WHERE Id_stock = '" + this.ideglise.Text + "' ";
+   MySqlCommand command = new MySqlCommand(select, conn);
+   object result = command.ExecuteScalar();
+
+   //Finding the max in the table
+   string selection = "SELECT Quantite_max FROM stocks WHERE Id_stock = '" + this.ideglise.Text + "' ";
+   MySqlCommand commander = new MySqlCommand(selection, conn);
+   object resulter = commander.ExecuteScalar();
+
+   //Converting all variable into int
+   int niveau = Convert.ToInt32(result);
+   int quantite = Convert.ToInt32(this.montant.Text);
+   int max = Convert.ToInt32(resulter);
+
+   //The result of the actual level plus the new value enter
+   int valiny = niveau + quantite;
+
+   if (valiny > max)
+   {
+        MessageBox.Show("ça depasse le niveau max du stock !");
+    }
+    else
+    {
+        string izi = "UPDATE stocks SET Niveau = Niveau + '" + this.montant.Text + "' WHERE Id_stock = '" + this.ideglise.Text + "' ";
+
+        MySqlCommand cmd = new MySqlCommand(izi, conn);
+        MySqlDataReader reader;
+        reader = cmd.ExecuteReader();
+        MessageBox.Show("Les données sont bien enregistrer !");
+
+     }
+     conn.Close(); 
+}
+catch (Exception) {
+    MessageBox.Show("La connection à la base de donnée ne fonctionne pas !");
+}
+
+
+DE ITO NDRAY NY ANLE STOCKS SORTIE...mila atao ao anaty TRY ito de mila conn bd kou
+
+
+//Finding varibales that may be used in our update
+            string select = "SELECT Niveau FROM stocks WHERE Id_stock = '" + this.ideglise.Text + "' ";
+            MySqlCommand command = new MySqlCommand(select, conn);
+            object result = command.ExecuteScalar();
+
+            //Finding the max in the table
+            string selecter = "SELECT Quantte_min FROM stocks WHERE Id_stock = '" + this.ideglise.Text + "' ";
+            MySqlCommand commander = new MySqlCommand(selecter, conn);
+            object resulter = commander.ExecuteScalar();
+
+            //Converting all variable into int
+            int niveau = Convert.ToInt32(result);
+            int quantite = Convert.ToInt32(this.montant.Text);
+            int min = Convert.ToInt32(resulter);
+
+            //The result of the actual level minor the new value enter
+            int response = niveau - quantite;
+
+            if (response < min)
+            {
+                MessageBox.Show("Le niveau que vous essayez de deduire ne suffisent pas le stocks ! ");
+            }
+            else
+            {
+                string izi = "UPDATE stocks SET Niveau = Niveau - '" + this.montant.Text + "' WHERE Id_stock = '" + this.ideglise.Text + "' ";
+
+                MySqlCommand cmd = new MySqlCommand(izi, conn);
+                MySqlDataReader reader;
+                reader = cmd.ExecuteReader();
+                MessageBox.Show("Les données sont bien enregistrer !");
+
+            }

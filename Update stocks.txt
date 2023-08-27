@@ -1,0 +1,44 @@
+try
+            {
+                conn.Open();
+                if (textBox4.Text != "" && textBox2.Text != "" && textBox3.Text != "" && textBox5.Text != "")
+                {
+                    string query = "UPDATE stocks SET Id_stock='" + this.textBox4.Text + "', Niveau='" + this.textBox2.Text + "', Quantite_max='" + this.textBox3.Text + "' ,Quantte_min='" + this.textBox5.Text + "'  ,Id_produit='" + this.textBox1.Text + "' ,Id_fournisseur='" + this.textBox6.Text + "' WHERE Id_stock='" + this.textBox4.Text + "'";
+
+                    MySqlDataAdapter sda = new MySqlDataAdapter(query, conn);
+
+                    DataTable dtable = new DataTable();
+
+                    sda.Fill(dtable);
+
+                    textBox1.Clear();
+
+                    textBox2.Clear();
+
+                    textBox3.Clear();
+                    textBox1.Focus();
+
+                    MessageBox.Show("Les données ont bien été ajouter !", "Succés", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Veullez remplir les champs", "Pardon", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                }
+            }
+            catch
+            {
+                textBox1.Clear();
+
+                textBox2.Clear();
+
+                textBox3.Clear();
+
+
+                textBox1.Focus();
+
+                MessageBox.Show("id déja utilisée", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conn.Close();
+            }

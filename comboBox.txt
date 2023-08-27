@@ -1,0 +1,3 @@
+string s1 = (string)comboBox1.SelectedItem;
+            string s2 = (string)comboBox2.SelectedItem;
+            string s3 = (string)comboBox3.SelectedItem;

@@ -1,0 +1,2 @@
+DateTime selectedDate = datett.Value;
+string formated = selectedDate.ToString("yyyy/MM/dd");

@@ -1,0 +1,22 @@
+if (textBox4.Text != "" && textBox2.Text != "" && textBox3.Text != "" && textBox5.Text != "")
+                {
+                    string query = "INSERT INTO stocks(Id_stock,Niveau,Quantite_max,Quantte_min,Id_produit,Id_fournisseur) VALUES ('" + this.textBox4.Text + "','" + this.textBox2.Text + "','" + this.textBox3.Text + "','" + this.textBox5.Text +"', '" + this.textBox1.Text + "', '" + this.textBox6.Text + "')";
+
+                    MySqlDataAdapter sda = new MySqlDataAdapter(query, conn);
+
+                    DataTable dtable = new DataTable();
+
+                    sda.Fill(dtable);
+
+                    textBox4.Clear();
+                    textBox2.Clear();
+                    textBox3.Clear();
+                    textBox5.Clear();
+                    textBox1.Clear();
+                    textBox6.Clear();
+
+
+                    textBox1.Focus();
+
+                    MessageBox.Show("Les données ont bien été ajouter !", "Succés", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }

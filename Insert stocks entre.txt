@@ -1,0 +1,10 @@
+DateTime selectedDate2 = dateEntre.Value;
+                string formatedDateEntre = selectedDate2.ToString("yyyy/MM/dd");
+
+                string query = "INSERT INTO stocks_entre(id_Entre,motif,date_Entre,quantite_Entre,id_stock) VALUES ('" + this.identre.Text + "','" + this.motif.Text + "','" + formatedDateEntre + "','" + this.qtt.Text + "','" + this.idstocks.Text + "')";
+
+                MySqlDataAdapter ssda = new MySqlDataAdapter(query, conn);
+
+                DataTable ddtable = new DataTable();
+
+                ssda.Fill(ddtable);
