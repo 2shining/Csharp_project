@@ -1,0 +1,34 @@
+	    try
+            {
+                conn.Open();
+                string izi = "SELECT Design,Solde FROM eglise";
+                MySqlCommand cmd = new MySqlCommand(izi, conn);
+                MySqlDataReader dr = cmd.ExecuteReader();
+
+                List<string> labels = new List<string>();
+                List<int> values = new List<int>();
+
+
+                Series series1 = new Series();
+                chart1.Series.Add(series1);
+
+                while (dr.Read())
+                {
+                    labels.Add(dr.GetString(0));
+                    values.Add(dr.GetInt32(1));
+                }
+                chart1.Titles.Add("DASHBOARD DU NIVEAU STOCKS");
+                //chart1.ChartAreas[0].AxisX.Title = "Le stocks";
+                //chart1.ChartAreas[0].AxisY.Title = "Niveau du stocks";
+                
+                for (int i = 0; i < labels.Count; i++) {
+                    series1.Points.AddXY(labels[i], values[i]);
+                }
+                dr.Close();
+                conn.Close();
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Il y a un erreur !");
+            }
